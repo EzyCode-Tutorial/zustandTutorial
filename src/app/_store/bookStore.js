@@ -12,3 +12,17 @@ const bookStore = (set) => {
 const useBookStore = create(bookStore);
 
 export default useBookStore;
+
+const newBookStore = (set) => ({
+	books: [],
+	addBook: (book) =>
+		set((state) => ({
+			books: [book, ...state.books],
+		})),
+	removeBook: (id) =>
+		set((state) => ({
+			books: state.books.filter((book) => book.id != id),
+		})),
+});
+
+export const useNewBookStore = create(newBookStore);
