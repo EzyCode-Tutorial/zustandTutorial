@@ -1,19 +1,9 @@
 "use client";
 
 import useBookStore from "./_store/bookStore";
-
+import { addBook, sellBook } from "./_store/bookStore";
 export default function Home() {
-	// const numOfBook = useBookStore((state) => state.numberOfBooks);
-	// const addBook = useBookStore((state) => state.addBook);
-	// const sellBook = useBookStore((state) => state.sellBook);
-
-	// const { numOfBook, addBook, sellBook } = useBookStore((state) => ({
-	// 	numOfBook: state.numberOfBooks,
-	// 	addBook: state.addBook,
-	// 	sellBook: state.sellBook,
-	// }));
-
-	const { numberOfBooks, addBook, sellBook } = useBookStore((state) => state);
+	const { numberOfBooks } = useBookStore((state) => state);
 
 	return (
 		<div className='flex max-w-4xl mx-auto justify-center items-center min-h-screen'>

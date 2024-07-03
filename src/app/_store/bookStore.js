@@ -1,18 +1,26 @@
 import { create } from "zustand";
-
+import { devtools } from "zustand/middleware";
 const bookStore = (set) => {
 	return {
 		numberOfBooks: 3,
-		addBook: () => set((state) => ({ numberOfBooks: state.numberOfBooks + 1 })),
-		sellBook: () =>
-			set((state) => ({ numberOfBooks: state.numberOfBooks - 1 })),
 	};
 };
+const useBookStore = create(devtools(bookStore));
 
-const useBookStore = create(bookStore);
+export const addBook = () => {
+	useBookStore.setState((state) => ({
+		numberOfBooks: state.numberOfBooks + 1,
+	}));
+};
 
+export const sellBook = () => {
+	useBookStore.setState((state) => ({
+		numberOfBooks: state.numberOfBooks - 1,
+	}));
+};
 export default useBookStore;
 
+// Created New Book Store with Book Details like Title and Auther Name with Book ID
 const newBookStore = (set) => ({
 	books: [],
 	addBook: (book) =>
