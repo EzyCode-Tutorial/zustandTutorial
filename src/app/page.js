@@ -3,7 +3,7 @@
 import useBookStore from "./_store/bookStore";
 import { addBook, sellBook } from "./_store/bookStore";
 export default function Home() {
-	const { numberOfBooks } = useBookStore((state) => state);
+	const { numberOfBooks } = useBookStore();
 
 	return (
 		<div className='flex max-w-4xl mx-auto justify-center items-center min-h-screen'>

@@ -1,10 +1,12 @@
 import { create } from "zustand";
 import { devtools } from "zustand/middleware";
-const bookStore = (set) => {
-	return {
-		numberOfBooks: 3,
-	};
+
+const initialState = {
+	numberOfBooks: 3,
 };
+const bookStore = (set) => ({
+	...initialState,
+});
 const useBookStore = create(devtools(bookStore));
 
 export const addBook = () => {
@@ -34,3 +36,13 @@ const newBookStore = (set) => ({
 });
 
 export const useNewBookStore = create(newBookStore);
+
+export const useBookShop = create((set, get) => ({
+	bookNumber: 0,
+	totalAmount: 0,
+	increaseBook: () => {
+		set((state) => ({ bookNumber: state.bookNumber + 1 }));
+		const totalAmount = get().bookNumber * 120;
+		set((state) => ({ totalAmount: totalAmount }));
+	},
+}));
