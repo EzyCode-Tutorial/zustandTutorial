@@ -37,12 +37,14 @@ const newBookStore = (set) => ({
 
 export const useNewBookStore = create(newBookStore);
 
-export const useBookShop = create((set, get) => ({
-	bookNumber: 0,
+export const useMyShop = create((set, get) => ({
+	numberBooks: 0,
 	totalAmount: 0,
 	increaseBook: () => {
-		set((state) => ({ bookNumber: state.bookNumber + 1 }));
-		const totalAmount = get().bookNumber * 120;
-		set((state) => ({ totalAmount: totalAmount }));
+		set((state) => ({
+			numberBooks: state.numberBooks + 1,
+		}));
+		let totalAmount = get().numberBooks * 120;
+		set(() => ({ totalAmount }));
 	},
 }));
